@@ -8,6 +8,60 @@ import { print } from './js/lib.js';
 
 // ======== OBJECTS DEFINITIONS ========
 // Define your objects here
+const cat = {
+   species: "cat",
+   name: "Kitty",
+   gender: "female",
+   legs: 4,
+   hands: 0,
+   saying: "rusni-3,14da!"
+}
+
+const dog = {
+   species: 'dog',
+   name: 'Spike',
+   gender: 'male',
+   legs: 4,
+   hands: 0,
+   saying: 'Gav-gav!'
+}
+
+const male = {
+   species: "human",
+   name: "Pavlo",
+   gender: "male",
+   legs: 2,
+   hands: 2,
+   saying: "Pashodnazhui"
+}
+
+const female = {
+   species: "human",
+   name: "Lilia",
+   gender: "female",
+   legs: 2,
+   hands: 2,
+   saying: "Falcons forever"
+}
+
+const femka = {
+   species: "cat",
+   name: "Cat-women",
+   gender: "It",
+   legs: 2,
+   hands: 2,
+}
+femka.saying = cat.saying;
+
+let inhabitants = [cat, dog, female, male, femka];
+let inhabitantsProp = ["species", "name", "gender", "legs", "hands", "saying"];
+
+function inhabitantsKeys() {
+   inhabitants.forEach((obj) => {
+      print(inhabitantsProp.map((key) => obj[key]).join(", "));
+   });
+};
+inhabitantsKeys();
 
 
 // ======== OUTPUT ========
@@ -18,6 +72,8 @@ import { print } from './js/lib.js';
    However, please, REFRAIN from improving visuals at least until your code is reviewed
    so code reviewers might focus on a single file that is index.js.
    */
+
+
 
 /* Print examples:
    print('ABC');

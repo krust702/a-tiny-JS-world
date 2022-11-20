@@ -8,60 +8,83 @@ import { print } from './js/lib.js';
 
 // ======== OBJECTS DEFINITIONS ========
 // Define your objects here
-const cat = {
-   species: "cat",
-   name: "Kitty",
-   gender: "female",
-   legs: 4,
-   hands: 0,
-   saying: "rusni-3,14da!"
-}
 
-const dog = {
-   species: 'dog',
-   name: 'Spike',
-   gender: 'male',
-   legs: 4,
-   hands: 0,
-   saying: 'Gav-gav!'
-}
+class Inhabitant {
+   constructor(species, name, gender, legs, saying) {
+      this.species = species;
+      this.name = name;
+      this.gender = gender;
+      this.legs = legs;
+      this.saying = saying;
+      this.spec = [
+         { spec: "species", info: "I am a" },
+         { spec: "name", info: "My name is" },
+         { spec: "gender", info: "Gender" },
+         { spec: "legs", info: "Legs:" },
+         { spec: "saying", info: "Devise" },
+      ]
 
-const male = {
-   species: "human",
-   name: "Pavlo",
-   gender: "male",
-   legs: 2,
-   hands: 2,
-   saying: "Pashodnazhui"
-}
-
-const female = {
-   species: "human",
-   name: "Lilia",
-   gender: "female",
-   legs: 2,
-   hands: 2,
-   saying: "Falcons forever"
-}
-
-const femka = {
-   species: "cat",
-   name: "Cat-women",
-   gender: "It",
-   legs: 2,
-   hands: 2,
-}
-femka.saying = cat.saying;
-
-let inhabitants = [cat, dog, female, male, femka];
-let inhabitantsProp = ["species", "name", "gender", "legs", "hands", "saying"];
-
-function inhabitantsKeys() {
-   inhabitants.forEach((obj) => {
-      print(inhabitantsProp.map((key) => obj[key]).join(", "));
-   });
+   }
+   getInhabitantInfo() {
+      return this.spec.map(({ spec, info }) => `${info} ${this[spec]}`).join("; ");
+   };
 };
-inhabitantsKeys();
+
+class Human extends Inhabitant {
+   constructor() {
+      super("human", name, 2, saying)
+      this.hands = 2;
+      this.spec = [
+         ...this.spec,
+         { spec: "hands", text: "I have hands" }
+      ]
+   }
+}
+
+class Man extends Human {
+   constructor(name, saying) {
+      super(name, "male", saying)
+   }
+}
+
+class Woman extends Human {
+   constructor(name, saying) {
+      super(name, "female", saying);
+   }
+}
+
+class Animal extends Inhabitant {
+   constructor(species, name, gender, saying) {
+      super(species, name, gender, 4, saying);
+      this.spec = [
+         ...this.spec
+      ]
+   }
+}
+
+class Cat extends Animal {
+   constructor(name, gender) {
+      super("cat", name, gender, "Meow");
+   }
+}
+
+class Dog extends Animal {
+   constructor(name, gender) {
+      super("dog", name.gender, "Gav")
+   }
+}
+
+let inhabitants = [
+   new Woman("Lilia", "Hi"),
+   new Man("Pavlo", "rusni 3.14zda"),
+   new Woman("Agripina", "Aspirina"),
+   new Dog("Spike", "male"),
+   new Cat("Kitty", "female"),
+]
+
+inhabitants.forEach((inhab) => {
+   print(inhab.getInhabitantInfo())
+})
 
 
 // ======== OUTPUT ========
